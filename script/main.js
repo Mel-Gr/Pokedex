@@ -2,38 +2,47 @@ const boton = document.getElementById("boton");
 const pokemon = document.getElementById("pokemon");
 const div = document.getElementById("contenido");
 boton.addEventListener("click", () => {
+    div.innerHTML = "";
     let url = "https://pokeapi.co/api/v2/pokemon/" + pokemon.value;
     fetch(url).then((response) => {
         return response.json();
     }).then((data) => {
         let img = document.createElement("img");
-        img.setAttribute("src",data.sprites.front_default);
+        img.setAttribute("src", data.sprites.front_default);
         let numPokemon = document.createElement("div");
         numPokemon.innerHTML = "Nº pokemon: " + ((data.hasOwnProperty('id')) ? JSON.stringify(data.id) : "");
         let tipo = document.createElement("div");
-        tipo = "Tipo: " + data.types[0].type.name;
+        tipo.innerHTML = "Tipo: " + ((data.types[0].type.hasOwnProperty('name')) ? JSON.stringify(data.types[0].type.name) : "")
+            + ((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name) : "");
         let nombre = document.createElement("div");
-        nombre.innerHTML = "Nombre: " + data.forms[0].name;
+        nombre.innerHTML = "Nombre: " + ((data.forms[0].hasOwnProperty('name')) ? JSON.stringify(data.forms[0].name) : "");
         let especies = document.createElement("div");
+        let habitat = document.createElement("div");
+        let texto = document.createElement("div");
         let url2 = data.species.url;
         fetch(url2).then((respuesta) => {
             return respuesta.json();
         }).then((datos) => {
-            especies.innerHTML = "Especie: " + datos.genera[5].genus;
-            especies.innerHTML += "Habitat: " + datos.habitat.name;
-            especies.innerHTML += "Flavor-text: " + datos.flavor_text_entries[34].flavor_text;
-        }).catch((error) => {
-            console.error("Error en la consulta: " + error);
+            especies.innerHTML = "Especie: " +
+                ((datos.genera[5].hasOwnProperty('genus')) ? JSON.stringify(datos.genera[5].genus) : "");
+            habitat.innerHTML = "Habitat: " +
+                ((datos.habitat.hasOwnProperty('name')) ? JSON.stringify(datos.habitat.name) : "");
+            texto.innerHTML = "Flavor-text: " +
+                ((datos.flavor_text_entries[34].hasOwnProperty('flavor_text')) ? JSON.stringify(datos.flavor_text_entries[34].flavor_text) : "");
+        }).catch((error2) => {
+            console.error("Error en la consulta: " + error2);
         })
         let altura = document.createElement("div");
-        altura.innerHTML = "Altura: " + data.height;
+        altura.innerHTML = "Altura: " + ((data.hasOwnProperty('height')) ? JSON.stringify(data.height) : "");
         let peso = document.createElement("div");
-        peso.innerHTML = "Peso: " + data.types.weight;
+        peso.innerHTML = "Peso: " + ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight) : "");
         div.appendChild(img);
         div.appendChild(tipo);
         div.appendChild(numPokemon);
         div.appendChild(nombre);
         div.appendChild(especies);
+        div.appendChild(habitat);
+        div.appendChild(texto);
         div.appendChild(altura);
         div.appendChild(peso);
     }).catch((error) => {
