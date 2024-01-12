@@ -26,7 +26,7 @@ boton.addEventListener("click", () => {
             especies.innerHTML = "Especie: " +
                 ((datos.genera[5].hasOwnProperty('genus')) ? JSON.stringify(datos.genera[5].genus) : "");
             habitat.innerHTML = "Habitat: " +
-                ((datos.habitat.hasOwnProperty('name')) ? JSON.stringify(datos.habitat.name) : "");
+                ((datos.hasOwnProperty('habitat')) ? JSON.stringify(datos.habitat.name) : "");
             texto.innerHTML = "Flavor-text: " +
                 ((datos.flavor_text_entries[34].hasOwnProperty('flavor_text')) ? JSON.stringify(datos.flavor_text_entries[34].flavor_text) : "");
         }).catch((error2) => {
