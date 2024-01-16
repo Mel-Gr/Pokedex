@@ -64,13 +64,13 @@ boton.addEventListener("click", () => {
         div.appendChild(img_back_shiny);
         div.appendChild(img_back_shiny_female);
         div.appendChild(tipo);
+        div.appendChild(altura);
+        div.appendChild(peso);
         div.appendChild(numPokemon);
         div.appendChild(nombre);
         div.appendChild(especies);
         div.appendChild(habitat);
         div.appendChild(texto);
-        div.appendChild(altura);
-        div.appendChild(peso);
     }).catch((error) => {
         console.error("Error en la consulta: " + error);
     })
