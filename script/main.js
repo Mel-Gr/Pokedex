@@ -10,12 +10,12 @@ boton.addEventListener("click", () => {
         let img = document.createElement("img");
         img.setAttribute("src", data.sprites.front_default);
         let numPokemon = document.createElement("div");
-        numPokemon.innerHTML = "Nº pokemon: " + ((data.hasOwnProperty('id')) ? JSON.stringify(data.id) : "");
+        numPokemon.innerHTML = "Num. Pokedex: " + ((data.hasOwnProperty('id')) ? JSON.stringify(data.id) : "");
         let tipo = document.createElement("div");
-        tipo.innerHTML = "Tipo: " + ((data.types[0].type.hasOwnProperty('name')) ? JSON.stringify(data.types[0].type.name) : "")
+        tipo.innerHTML = "Type: " + ((data.types[0].type.hasOwnProperty('name')) ? JSON.stringify(data.types[0].type.name) : "")
             + ((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name) : "");
         let nombre = document.createElement("div");
-        nombre.innerHTML = "Nombre: " + ((data.forms[0].hasOwnProperty('name')) ? JSON.stringify(data.forms[0].name) : "");
+        nombre.innerHTML = "Name: " + ((data.forms[0].hasOwnProperty('name')) ? JSON.stringify(data.forms[0].name) : "");
         let especies = document.createElement("div");
         let habitat = document.createElement("div");
         let texto = document.createElement("div");
@@ -23,19 +23,19 @@ boton.addEventListener("click", () => {
         fetch(url2).then((respuesta) => {
             return respuesta.json();
         }).then((datos) => {
-            especies.innerHTML = "Especie: " +
+            especies.innerHTML = "Species: " +
                 ((datos.genera[5].hasOwnProperty('genus')) ? JSON.stringify(datos.genera[5].genus) : "");
             habitat.innerHTML = "Habitat: " +
                 ((datos.hasOwnProperty('habitat')) ? JSON.stringify(datos.habitat.name) : "");
-            texto.innerHTML = "Flavor-text: " +
+            texto.innerHTML = "Description: " +
                 ((datos.flavor_text_entries[34].hasOwnProperty('flavor_text')) ? JSON.stringify(datos.flavor_text_entries[34].flavor_text) : "");
         }).catch((error2) => {
             console.error("Error en la consulta: " + error2);
         })
         let altura = document.createElement("div");
-        altura.innerHTML = "Altura: " + ((data.hasOwnProperty('height')) ? JSON.stringify(data.height) : "");
+        altura.innerHTML = "Height: " + ((data.hasOwnProperty('height')) ? JSON.stringify(data.height) : "" + "cm");
         let peso = document.createElement("div");
-        peso.innerHTML = "Peso: " + ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight) : "");
+        peso.innerHTML = "Weight: " + ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight) : "" + "");
         div.appendChild(img);
         div.appendChild(tipo);
         div.appendChild(numPokemon);
