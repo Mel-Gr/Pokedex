@@ -26,13 +26,13 @@ boton.addEventListener("click", () => {
         let tipo = document.createElement("div");
 
         img_front_default.setAttribute("src", data.sprites.front_default);
-        img_front_female.setAttribute("src", data.sprites.front_default);
-        img_front_shiny.setAttribute("src", data.sprites.front_default);
-        img_front_shiny_female.setAttribute("src", data.sprites.front_default);
-        img_back_default.setAttribute("src", data.sprites.front_default);
-        img_back_female.setAttribute("src", data.sprites.front_default);
-        img_back_shiny.setAttribute("src", data.sprites.front_default);
-        img_back_shiny_female.setAttribute("src", data.sprites.front_default);
+        img_front_female.setAttribute("src", data.sprites.front_female);
+        img_front_shiny.setAttribute("src", data.sprites.front_shiny);
+        img_front_shiny_female.setAttribute("src", data.sprites.front_shiny_female);
+        img_back_default.setAttribute("src", data.sprites.back_default);
+        img_back_female.setAttribute("src", data.sprites.back_female);
+        img_back_shiny.setAttribute("src", data.sprites.back_shiny);
+        img_back_shiny_female.setAttribute("src", data.sprites.back_shiny_female);
 
         numPokemon.innerHTML = "Num. Pokedex: " + ((data.hasOwnProperty('id')) ? JSON.stringify(data.id) : "");
         tipo.innerHTML = "Type: " + ((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name) : "")
