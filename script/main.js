@@ -33,9 +33,9 @@ boton.addEventListener("click", () => {
             console.error("Error en la consulta: " + error2);
         })
         let altura = document.createElement("div");
-        altura.innerHTML = "Height: " + ((data.hasOwnProperty('height')) ? JSON.stringify(data.height) : "" + "cm");
+        altura.innerHTML = "Height: " + ((data.hasOwnProperty('height')) ? JSON.stringify(data.height) : "" + "gm");
         let peso = document.createElement("div");
-        peso.innerHTML = "Weight: " + ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight) : "" + "");
+        peso.innerHTML = "Weight: " + ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight) : "" + "gg");
         div.appendChild(img);
         div.appendChild(tipo);
         div.appendChild(numPokemon);
