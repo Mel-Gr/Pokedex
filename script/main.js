@@ -7,18 +7,40 @@ boton.addEventListener("click", () => {
     fetch(url).then((response) => {
         return response.json();
     }).then((data) => {
-        let img = document.createElement("img");
-        img.setAttribute("src", data.sprites.front_default);
-        let numPokemon = document.createElement("div");
-        numPokemon.innerHTML = "Num. Pokedex: " + ((data.hasOwnProperty('id')) ? JSON.stringify(data.id) : "");
-        let tipo = document.createElement("div");
-        tipo.innerHTML = "Type: " + ((data.types[0].type.hasOwnProperty('name')) ? JSON.stringify(data.types[0].type.name) : "")
-            + ((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name) : "");
-        let nombre = document.createElement("div");
-        nombre.innerHTML = "Name: " + ((data.forms[0].hasOwnProperty('name')) ? JSON.stringify(data.forms[0].name) : "");
+
+        let img_front_default = document.createElement("img");
+        let img_front_female = document.createElement("img");
+        let img_front_shiny = document.createElement("img");
+        let img_front_shiny_female = document.createElement("img");
+        let img_back_default = document.createElement("img");
+        let img_back_female = document.createElement("img");
+        let img_back_shiny = document.createElement("img");
+        let img_back_shiny_female = document.createElement("img");
         let especies = document.createElement("div");
         let habitat = document.createElement("div");
         let texto = document.createElement("div");
+        let nombre = document.createElement("div");
+        let altura = document.createElement("div");
+        let peso = document.createElement("div");
+        let numPokemon = document.createElement("div");
+        let tipo = document.createElement("div");
+
+        img_front_default.setAttribute("src", data.sprites.front_default);
+        img_front_female.setAttribute("src", data.sprites.front_default);
+        img_front_shiny.setAttribute("src", data.sprites.front_default);
+        img_front_shiny_female.setAttribute("src", data.sprites.front_default);
+        img_back_default.setAttribute("src", data.sprites.front_default);
+        img_back_female.setAttribute("src", data.sprites.front_default);
+        img_back_shiny.setAttribute("src", data.sprites.front_default);
+        img_back_shiny_female.setAttribute("src", data.sprites.front_default);
+
+        numPokemon.innerHTML = "Num. Pokedex: " + ((data.hasOwnProperty('id')) ? JSON.stringify(data.id) : "");
+        tipo.innerHTML = "Type: " + ((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name) : "")
+            + ((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name) : "");
+        nombre.innerHTML = "Name: " + ((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name) : "");
+        altura.innerHTML = "Height: " + ((data.hasOwnProperty('height')) ? JSON.stringify(data.height) : "" + "cm");
+        peso.innerHTML = "Weight: " + ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight) : "" + "Kg");
+
         let url2 = data.species.url;
         fetch(url2).then((respuesta) => {
             return respuesta.json();
@@ -32,11 +54,15 @@ boton.addEventListener("click", () => {
         }).catch((error2) => {
             console.error("Error en la consulta: " + error2);
         })
-        let altura = document.createElement("div");
-        altura.innerHTML = "Height: " + ((data.hasOwnProperty('height')) ? JSON.stringify(data.height) : "" + "gm");
-        let peso = document.createElement("div");
-        peso.innerHTML = "Weight: " + ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight) : "" + "gg");
-        div.appendChild(img);
+
+        div.appendChild(img_front_default);
+        div.appendChild(img_front_female);
+        div.appendChild(img_front_shiny);
+        div.appendChild(img_front_shiny_female);
+        div.appendChild(img_back_default);
+        div.appendChild(img_back_female);
+        div.appendChild(img_back_shiny);
+        div.appendChild(img_back_shiny_female);
         div.appendChild(tipo);
         div.appendChild(numPokemon);
         div.appendChild(nombre);
