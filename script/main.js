@@ -10,6 +10,7 @@ function addImage(url_img) {
 
 boton.addEventListener("click", () => {
     div.innerHTML = "";
+    div.setAttribute("class", "pokedex");
     let url = "https://pokeapi.co/api/v2/pokemon/" + pokemon.value;
     fetch(url).then((response) => {
         return response.json();
