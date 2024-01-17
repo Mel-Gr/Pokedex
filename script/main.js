@@ -1,6 +1,13 @@
 const boton = document.getElementById("boton");
 const pokemon = document.getElementById("pokemon");
 const div = document.getElementById("contenido");
+
+function addImage(url_img) {
+    let img = document.createElement("img");
+    img.setAttribute("src", url_img);
+    div.appendChild(img);
+}
+
 boton.addEventListener("click", () => {
     div.innerHTML = "";
     let url = "https://pokeapi.co/api/v2/pokemon/" + pokemon.value;
@@ -8,14 +15,6 @@ boton.addEventListener("click", () => {
         return response.json();
     }).then((data) => {
 
-        let img_front_default = document.createElement("img");
-        let img_front_female = document.createElement("img");
-        let img_front_shiny = document.createElement("img");
-        let img_front_shiny_female = document.createElement("img");
-        let img_back_default = document.createElement("img");
-        let img_back_female = document.createElement("img");
-        let img_back_shiny = document.createElement("img");
-        let img_back_shiny_female = document.createElement("img");
         let especies = document.createElement("div");
         let habitat = document.createElement("div");
         let texto = document.createElement("div");
@@ -25,14 +24,22 @@ boton.addEventListener("click", () => {
         let numPokemon = document.createElement("div");
         let tipo = document.createElement("div");
 
-        img_front_default.setAttribute("src", data.sprites.front_default);
-        img_front_female.setAttribute("src", data.sprites.front_female);
-        img_front_shiny.setAttribute("src", data.sprites.front_shiny);
-        img_front_shiny_female.setAttribute("src", data.sprites.front_shiny_female);
-        img_back_default.setAttribute("src", data.sprites.back_default);
-        img_back_female.setAttribute("src", data.sprites.back_female);
-        img_back_shiny.setAttribute("src", data.sprites.back_shiny);
-        img_back_shiny_female.setAttribute("src", data.sprites.back_shiny_female);
+        if (data.sprites.front_default !== null)
+            addImage(data.sprites.front_default);
+        if (data.sprites.front_female !== null)
+            addImage(data.sprites.front_female);
+        if (data.sprites.front_shiny !== null)
+            addImage(data.sprites.front_shiny);
+        if (data.sprites.front_shiny_female !== null)
+            addImage(data.sprites.front_shiny_female);
+        if (data.sprites.back_default !== null)
+            addImage(data.sprites.back_default);
+        if (data.sprites.back_female !== null)
+            addImage(data.sprites.back_female);
+        if (data.sprites.back_shiny !== null)
+            addImage(data.sprites.back_shiny);
+        if (data.sprites.back_shiny_female !== null)
+            addImage(data.sprites.back_shiny_female);
 
         numPokemon.innerHTML = "Num. Pokedex: " + ((data.hasOwnProperty('id')) ? JSON.stringify(data.id) : "");
         tipo.innerHTML = "Type: " + ((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name) : "")
@@ -55,14 +62,6 @@ boton.addEventListener("click", () => {
             console.error("Error en la consulta: " + error2);
         })
 
-        div.appendChild(img_front_default);
-        div.appendChild(img_front_female);
-        div.appendChild(img_front_shiny);
-        div.appendChild(img_front_shiny_female);
-        div.appendChild(img_back_default);
-        div.appendChild(img_back_female);
-        div.appendChild(img_back_shiny);
-        div.appendChild(img_back_shiny_female);
         div.appendChild(tipo);
         div.appendChild(altura);
         div.appendChild(peso);
@@ -75,3 +74,46 @@ boton.addEventListener("click", () => {
         console.error("Error en la consulta: " + error);
     })
 });
+/*
+        let img_front_default = document.createElement("img");
+        let img_front_female = document.createElement("img");
+        let img_front_shiny = document.createElement("img");
+        let img_front_shiny_female = document.createElement("img");
+        let img_back_default = document.createElement("img");
+        let img_back_female = document.createElement("img");
+        let img_back_shiny = document.createElement("img");
+        let img_back_shiny_female = document.createElement("img");
+        
+        if(data.sprites.front_default !== null){
+            img_front_default.setAttribute("src", data.sprites.front_default);
+            div.appendChild(img_front_default);
+        }
+        if(data.sprites.front_female !== null){
+            img_front_female.setAttribute("src", data.sprites.front_female);
+            div.appendChild(img_front_female);
+        }
+        if(data.sprites.front_shiny !== null){
+            img_front_shiny.setAttribute("src", data.sprites.front_shiny);
+            div.appendChild(img_front_shiny);
+        }
+        if(data.sprites.front_shiny_female !== null){
+            img_front_shiny_female.setAttribute("src", data.sprites.front_shiny_female);
+            div.appendChild(img_front_shiny_female);
+        }
+        if(data.sprites.back_default !== null){
+            img_back_default.setAttribute("src", data.sprites.back_default);
+            div.appendChild(img_back_default);
+        }
+        if(data.sprites.back_female !== null){
+            img_back_female.setAttribute("src", data.sprites.back_female);
+            div.appendChild(img_back_female);
+        }
+        if(data.sprites.back_shiny !== null){
+            img_back_shiny.setAttribute("src", data.sprites.back_shiny);
+            div.appendChild(img_back_shiny);
+        }
+        if(data.sprites.back_shiny_female !== null){
+            img_back_shiny_female.setAttribute("src", data.sprites.back_shiny_female);
+            div.appendChild(img_back_shiny_female);
+        }
+*/
