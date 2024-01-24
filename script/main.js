@@ -17,9 +17,8 @@ function flavorTextEn (datos){
     for (let i = 0; i < arrTextos.length; i++) {
         if (arrTextos[i].language.name == "en")
             return JSON.stringify(datos.flavor_text_entries[i].flavor_text);
-        else
-            return "";
     }
+    return "";
 }
 
 function generaSpecieEn (datos){
@@ -27,9 +26,8 @@ function generaSpecieEn (datos){
     for (let i = 0; i < arrTextos.length; i++) {
         if (arrTextos[i].language.name == "en")
             return JSON.stringify(datos.genera[i].genus);
-        else
-            return "";
     }
+    return "";
 }
 
 boton.addEventListener("click", () => {
@@ -61,11 +59,11 @@ boton.addEventListener("click", () => {
         };
         console.log(pokemon.nombre);
         let info = document.createElement("div");
-        info.innerHTML += "Num. Pokedex: " + pokemon.numPokemon;
-        info.innerHTML += "Type: " + pokemon.tipo1 + pokemon.tipo2;
-        info.innerHTML += "Name: " + pokemon.nombre;
-        info.innerHTML += "Height: " + pokemon.peso;
-        info.innerHTML += "Weight: " + pokemon.altura;
+        info.innerHTML += " Num. Pokedex: " + pokemon.numPokemon;
+        info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2;
+        info.innerHTML += " Name: " + pokemon.nombre;
+        info.innerHTML += " Height: " + pokemon.peso;
+        info.innerHTML += " Weight: " + pokemon.altura;
 
         let url2 = data.species.url;
         fetch(url2).then((respuesta) => {
@@ -74,9 +72,9 @@ boton.addEventListener("click", () => {
             pokemon.especie = generaSpecieEn (datos);
             pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name) : "");
             pokemon.texto = flavorTextEn(datos);
-            info.innerHTML += "Species: " + pokemon.especie;
-            info.innerHTML += "Habitat: " + pokemon.habitat;
-            info.innerHTML += "Description: " + pokemon.texto;
+            info.innerHTML += " Species: " + pokemon.especie;
+            info.innerHTML += " Habitat: " + pokemon.habitat;
+            info.innerHTML += " Description: " + pokemon.texto;
         }).catch((error2) => {
             console.error("Error en la consulta: " + error2);
         })
