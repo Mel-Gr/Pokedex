@@ -52,7 +52,7 @@ boton.addEventListener("click", () => {
             return respuesta.json();
         }).then((datos) => {
             pokemon.especie = ((datos.genera.hasOwnProperty('5')) ? JSON.stringify(datos.genera[5].genus) : "");
-            pokemon.habitat = ((datos.hasOwnProperty('habitat')) ? JSON.stringify(datos.habitat.name) : "");
+            pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name) : "");
             pokemon.texto = ((datos.flavor_text_entries.hasOwnProperty('34')) ? JSON.stringify(datos.flavor_text_entries[34].flavor_text) : "");
             info.innerHTML += "Species: " + pokemon.especie;
             info.innerHTML += "Habitat: " + pokemon.habitat;
