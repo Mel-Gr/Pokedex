@@ -39,12 +39,12 @@ boton.addEventListener("click", () => {
     }).then((data) => {
 
         let pokemon = {
-            nombre: ((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name) : ""),
-            altura: ((data.hasOwnProperty('height')) ? JSON.stringify(data.height) : ""),
-            peso: ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight) : ""),
-            numPokemon: ((data.hasOwnProperty('id')) ? JSON.stringify(data.id) : ""),
-            tipo1: ((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name) : ""),
-            tipo2: ((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name) : ""),
+            nombre: ((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name).replaceAll('"', "") : ""),
+            altura: ((data.hasOwnProperty('height')) ? JSON.stringify(data.height).replaceAll('"', "") : ""),
+            peso: ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight).replaceAll('"', "") : ""),
+            numPokemon: ((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : ""),
+            tipo1: ((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name).replaceAll('"', "") : ""),
+            tipo2: ((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name).replaceAll('"', "") : ""),
             front_default: ((data.sprites.front_default !== null) ? data.sprites.front_default : ""),
             front_female: ((data.sprites.front_female !== null) ? data.sprites.front_female : ""),
             front_shiny: ((data.sprites.front_shiny !== null) ? data.sprites.front_shiny : ""),
@@ -69,9 +69,9 @@ boton.addEventListener("click", () => {
         fetch(url2).then((respuesta) => {
             return respuesta.json();
         }).then((datos) => {
-            pokemon.especie = generaSpecieEn (datos);
-            pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name) : "");
-            pokemon.texto = flavorTextEn(datos);
+            pokemon.especie = generaSpecieEn (datos).replaceAll('"', "");
+            pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name).replaceAll('"', "") : "");
+            pokemon.texto = flavorTextEn(datos).replaceAll("\\n", " " ).replaceAll('"', "").replaceAll("\\f", " " );
             info.innerHTML += " Species: " + pokemon.especie;
             info.innerHTML += " Habitat: " + pokemon.habitat;
             info.innerHTML += " Description: " + pokemon.texto;
