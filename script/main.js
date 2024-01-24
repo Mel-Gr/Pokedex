@@ -71,8 +71,8 @@ boton.addEventListener("click", () => {
         fetch(url2).then((respuesta) => {
             return respuesta.json();
         }).then((datos) => {
-            pokemon.especie = ((datos.genera.hasOwnProperty('5')) ? JSON.stringify(datos.genera[5].genus) : "");
-            pokemon.habitat = generaSpecieEn (datos);
+            pokemon.especie = generaSpecieEn (datos);
+            pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name) : "");
             pokemon.texto = flavorTextEn(datos);
             info.innerHTML += "Species: " + pokemon.especie;
             info.innerHTML += "Habitat: " + pokemon.habitat;
