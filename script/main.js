@@ -12,6 +12,26 @@ document.getElementById("fr").addEventListener("submit", (event) => {
     event.preventDefault();
 })
 
+function flavorTextEn (datos){
+    let arrTextos = datos.flavor_text_entries;
+    for (let i = 0; i < arrTextos.length; i++) {
+        if (arrTextos[i].language.name == "en")
+            return JSON.stringify(datos.flavor_text_entries[i].flavor_text);
+        else
+            return "";
+    }
+}
+
+function generaSpecieEn (datos){
+    let arrTextos = datos.genera;
+    for (let i = 0; i < arrTextos.length; i++) {
+        if (arrTextos[i].language.name == "en")
+            return JSON.stringify(datos.genera[i].genus);
+        else
+            return "";
+    }
+}
+
 boton.addEventListener("click", () => {
     div.innerHTML = "";
     div.setAttribute("class", "pokedex");
@@ -52,8 +72,8 @@ boton.addEventListener("click", () => {
             return respuesta.json();
         }).then((datos) => {
             pokemon.especie = ((datos.genera.hasOwnProperty('5')) ? JSON.stringify(datos.genera[5].genus) : "");
-            pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name) : "");
-            pokemon.texto = ((datos.flavor_text_entries.hasOwnProperty('34')) ? JSON.stringify(datos.flavor_text_entries[34].flavor_text) : "");
+            pokemon.habitat = generaSpecieEn (datos);
+            pokemon.texto = flavorTextEn(datos);
             info.innerHTML += "Species: " + pokemon.especie;
             info.innerHTML += "Habitat: " + pokemon.habitat;
             info.innerHTML += "Description: " + pokemon.texto;
