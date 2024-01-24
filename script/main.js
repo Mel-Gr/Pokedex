@@ -31,10 +31,11 @@ boton.addEventListener("click", () => {
             back_female: ((data.sprites.back_female !== null) ? data.sprites.back_female : ""),
             back_shiny: ((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : ""),
             back_shiny_female: ((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : ""),
-            especie,
-            habitat,
-            texto
+            especie:"",
+            habitat:"",
+            texto:""
         };
+        console.log(pokemon.nombre);
         let info = document.createElement("div");
         info.innerHTML += "Num. Pokedex: " + pokemon.numPokemon;
         info.innerHTML += "Type: " + pokemon.tipo1 + pokemon.tipo2;
