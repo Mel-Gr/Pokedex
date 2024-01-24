@@ -59,7 +59,7 @@ boton.addEventListener("click", () => {
         };
         console.log(pokemon.nombre);
         let info = document.createElement("div");
-        info.innerHTML += " Num. Pokedex: " + pokemon.numPokemon;
+        info.innerHTML += " Pokedex num: " + pokemon.numPokemon;
         info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2;
         info.innerHTML += " Name: " + pokemon.nombre;
         info.innerHTML += " Height: " + pokemon.peso;
