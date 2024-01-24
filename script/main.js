@@ -8,6 +8,10 @@ function addImage(url_img) {
     div.appendChild(img);
 }
 
+document.getElementById("fr").addEventListener("submit", (event) => {
+    event.preventDefault();
+})
+
 boton.addEventListener("click", () => {
     div.innerHTML = "";
     div.setAttribute("class", "pokedex");
