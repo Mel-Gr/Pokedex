@@ -90,4 +90,6 @@ boton.addEventListener("click", () => {
     }).catch((error) => {
         console.error("Error en la consulta: " + error);
     })
+
+    
 });
