@@ -49,6 +49,11 @@ function generaSpecieEn (datos){
     return "";
 }
 
+movimientos.addEventListener("click", () =>{
+    
+})
+
+
 boton.addEventListener("click", () => {
     div.innerHTML = "";
     div.setAttribute("class", "pokedex");
@@ -105,5 +110,5 @@ boton.addEventListener("click", () => {
         console.error("Error en la consulta: " + error);
     })
 
-    
+
 });
