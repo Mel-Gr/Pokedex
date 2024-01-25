@@ -1,6 +1,25 @@
 const boton = document.getElementById("boton");
-const pokemon = document.getElementById("pokemon");
+const pokemon_nombre = document.getElementById("pokemon");
 const div = document.getElementById("contenido");
+let pokemon = {
+    nombre: "",
+    altura: "",
+    peso: "",
+    numPokemon: "",
+    tipo1: "",
+    tipo2: "",
+    front_default: "",
+    front_female: "",
+    front_shiny: "",
+    front_shiny_female: "",
+    back_default: "",
+    back_female: "",
+    back_shiny: "",
+    back_shiny_female: "",
+    especie:"",
+    habitat:"",
+    texto:""
+};
 
 function addImage(url_img) {
     let img = document.createElement("img");
@@ -33,30 +52,25 @@ function generaSpecieEn (datos){
 boton.addEventListener("click", () => {
     div.innerHTML = "";
     div.setAttribute("class", "pokedex");
-    let url = "https://pokeapi.co/api/v2/pokemon/" + pokemon.value;
+    let url = "https://pokeapi.co/api/v2/pokemon/" + pokemon_nombre.value;
     fetch(url).then((response) => {
         return response.json();
     }).then((data) => {
 
-        let pokemon = {
-            nombre: ((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name).replaceAll('"', "") : ""),
-            altura: ((data.hasOwnProperty('height')) ? JSON.stringify(data.height).replaceAll('"', "") : ""),
-            peso: ((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight).replaceAll('"', "") : ""),
-            numPokemon: ((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : ""),
-            tipo1: ((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name).replaceAll('"', "") : ""),
-            tipo2: ((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name).replaceAll('"', "") : ""),
-            front_default: ((data.sprites.front_default !== null) ? data.sprites.front_default : ""),
-            front_female: ((data.sprites.front_female !== null) ? data.sprites.front_female : ""),
-            front_shiny: ((data.sprites.front_shiny !== null) ? data.sprites.front_shiny : ""),
-            front_shiny_female: ((data.sprites.front_shiny_female !== null) ? data.sprites.front_shiny_female : ""),
-            back_default: ((data.sprites.back_default !== null) ? data.sprites.back_default : ""),
-            back_female: ((data.sprites.back_female !== null) ? data.sprites.back_female : ""),
-            back_shiny: ((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : ""),
-            back_shiny_female: ((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : ""),
-            especie:"",
-            habitat:"",
-            texto:""
-        };
+        pokemon.nombre =((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name).replaceAll('"', "") : "");
+        pokemon.altura =((data.hasOwnProperty('height')) ? JSON.stringify(data.height).replaceAll('"', "") : "");
+        pokemon.peso =((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight).replaceAll('"', "") : "")
+        pokemon.numPokemon =((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : "");
+        pokemon.tipo1 =((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name).replaceAll('"', "") : "");
+        pokemon.tipo2 =((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name).replaceAll('"', "") : "");
+        pokemon.front_default =((data.sprites.front_default !== null) ? data.sprites.front_default : "");
+        pokemon.front_female =((data.sprites.front_female !== null) ? data.sprites.front_female : "");
+        pokemon.front_shiny =((data.sprites.front_shiny !== null) ? data.sprites.front_shiny : "");
+        pokemon.front_shiny_female =((data.sprites.front_shiny_female !== null) ? data.sprites.front_shiny_female : "");
+        pokemon.back_default =((data.sprites.back_default !== null) ? data.sprites.back_default : "");
+        pokemon.back_female =((data.sprites.back_female !== null) ? data.sprites.back_female : "");
+        pokemon.back_shiny =((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : "");
+        pokemon.back_shiny_female =((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : "");
         console.log(pokemon.nombre);
         let info = document.createElement("div");
         info.innerHTML += " Pokedex num: " + pokemon.numPokemon;
