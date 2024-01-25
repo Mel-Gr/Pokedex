@@ -99,6 +99,8 @@ boton.addEventListener("click", () => {
         }).catch((error2) => {
             console.error("Error en la consulta: " + error2);
         })
+
+        //@Sergio Aquí hay que gestionar las imágenes, no se pueden mostrar todas aquí tal y como están. Hay que hacer que en principio solo muestre la default cuando esté cerrada y cuando esté abierta, en un principio la default y luego si pulsa algún check, la que corresponda.
         addImage(pokemon.front_default);
         addImage(pokemon.front_female);
         addImage(pokemon.front_shiny);
