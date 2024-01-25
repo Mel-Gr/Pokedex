@@ -50,7 +50,9 @@ function generaSpecieEn (datos){
 }
 
 movimientos.addEventListener("click", () =>{
-    
+    movimientos.innerHTML = "";
+  
+
 })
 
 
