@@ -1,4 +1,4 @@
-const boton = document.getElementById("boton");
+const boton = document.getElementById("botonBusc");
 const pokemon_nombre = document.getElementById("pokemon");
 const div = document.getElementById("contenido");
 let pokemon = {
