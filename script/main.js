@@ -1,6 +1,16 @@
-const boton = document.getElementById("botonBusc");
-const pokemon_nombre = document.getElementById("inputBusc");
-const div = document.getElementById("contenido");
+const botonBusc = document.getElementById("botonBusc");
+const avanzar = document.getElementById("avanzar");
+const botonMov = document.getElementById("botonMov");
+const botonHAb = document.getElementById("botonHAb");
+const retroceder = document.getElementById("retroceder");
+
+const inputBusc = document.getElementById("inputBusc");
+
+const pokedexCerrada = document.getElementById("pokedexCerrada");
+const general = document.getElementById("general");
+const contenido = document.getElementById("contenido");
+const movimientos = document.getElementById("movimientos");
+const habilidades = document.getElementById("habilidades");
 
 let abierta = false;
 
@@ -27,7 +37,7 @@ let pokemon = {
 function addImage(url_img) {
     let img = document.createElement("img");
     img.setAttribute("src", url_img);
-    div.appendChild(img);
+    contenido.appendChild(img);
 }
 
 document.getElementById("fr").addEventListener("submit", (event) => {
@@ -59,10 +69,9 @@ movimientos.addEventListener("click", () =>{
 })
 
 
-boton.addEventListener("click", () => {
-    div.innerHTML = "";
-    div.setAttribute("class", "pokedex");
-    let url = "https://pokeapi.co/api/v2/pokemon/" + pokemon_nombre.value;
+botonBusc.addEventListener("click", () => {
+    contenido.innerHTML = "";
+    let url = "https://pokeapi.co/api/v2/pokemon/" + inputBusc.value;
     fetch(url).then((response) => {
         return response.json();
     }).then((data) => {
@@ -112,7 +121,7 @@ boton.addEventListener("click", () => {
         addImage(pokemon.back_female);
         addImage(pokemon.back_shiny);
         addImage(pokemon.back_shiny_female);
-        div.appendChild(info);
+        contenido.appendChild(info);
     }).catch((error) => {
         console.error("Error en la consulta: " + error);
     })
