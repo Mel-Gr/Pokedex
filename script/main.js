@@ -12,6 +12,12 @@ const contenido = document.getElementById("contenido");
 const movimientos = document.getElementById("movimientos");
 const habilidades = document.getElementById("habilidades");
 
+const imgCerrada = document.getElementById("imgCerrada");
+const numeroYNombreCerrada = document.getElementById("numeroYNombreCerrada");
+
+const ul_movimientos = document.getElementById("ul_movimientos");
+const ul_habilidades = document.getElementById("ul_habilidades");
+
 let abierta = false;
 
 let pokemon = {
