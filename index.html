@@ -9,21 +9,30 @@
 </head>
 
 <body>
-    <header>
+    <header> <!-- Esto tiene que estar "encima" de la imagen superior de la pokedex, en la parte del circulito-->
         <form id="fr">
-            <input type="text" id="pokemon">
+            <input type="text" id="inputBusc">
             <button type="submit" id="botonBusc">Boton</button>
         </form>
     </header>
+    <div id="pokedexCerrada">
+        <img id="imgCerrada">
+        <p id="numeroYNombreCerrada"></p>
+    </div>
+    <input type="button" id="avanzar" value="Avanza"></input>    
     <div id="general">
-        <input type="button" id="avanzar" value="Avanza"></input>
-        <input type="button" id="retroceder" value="Retocede"></input>
-        <input type="button" id="botonMov" value="Movimientos"></input>
         <img src="./images/PokedexSuperior.png" id="pokearriba" class="pokedex">
         <div id="contenido"></div>
+        <input type="button" id="botonMov" value="Movimientos"></input>
         <img src="./images/PokedexInferior.png" id="pokeabajo" class="pokedex">
-        <div id="movimientos"></div>
     </div>
+    <div id="movimientos">
+        <ul class="lista"></ul>
+    </div>
+    <div id="habilidades">
+        <ul class="lista"></ul>
+    </div>
+    <input type="button" id="retroceder" value="Retocede"></input>
     <script src="./script/main.js"></script>
 </body>
 

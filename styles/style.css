@@ -1,13 +1,11 @@
 #contenido{
   background-color: rgba(166, 237, 247, 0.712);
   text-align: center;
- 
   border-style: groove;
   border-top: black;
   border-bottom: black;
 
 }
 .pokedex{
-  height: 300px;
   width: 450px;
 }
