@@ -136,7 +136,7 @@ imgCerrada.addEventListener("click", () => {
 
 botonBusc.addEventListener("click", () => {
     if(abierta){
-        
+        //Mostrar la barra encima de la pokedex
     }else if (!abierta){
         abierta = true;
         numeroYNombreCerrada.innerHTML = "";
