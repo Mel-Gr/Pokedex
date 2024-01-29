@@ -9,6 +9,9 @@ const inputBusc = document.getElementById("inputBusc");
 const pokedexCerrada = document.getElementById("pokedexCerrada");
 const general = document.getElementById("general");
 const contenido = document.getElementById("contenido");
+const imgAbierta = document.getElementById("imgAbierta");
+const info = document.getElementById("info");
+const descripcion = document.getElementById("descripcion");
 const movimientos = document.getElementById("movimientos");
 const habilidades = document.getElementById("habilidades");
 
@@ -17,6 +20,9 @@ const numeroYNombreCerrada = document.getElementById("numeroYNombreCerrada");
 
 const ul_movimientos = document.getElementById("ul_movimientos");
 const ul_habilidades = document.getElementById("ul_habilidades");
+
+contenido.style.display = "none";
+
 
 let abierta = false;
 
@@ -78,7 +84,8 @@ imgCerrada.addEventListener("click", () => {
     pokedexCerrada.style.display = "none";
     abierta = false;
     contenido.style.display = "block";
-    contenido.innerHTML = "";
+    info.innerHTML = "";
+    descripcion.innerHTML = "";
     let url = "https://pokeapi.co/api/v2/pokemon/" + inputBusc.value;
     fetch(url).then((response) => {
         return response.json();
@@ -99,7 +106,6 @@ imgCerrada.addEventListener("click", () => {
         pokemon.back_shiny =((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : "");
         pokemon.back_shiny_female =((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : "");
         console.log(pokemon.nombre);
-        let info = document.createElement("div");
         info.innerHTML += " Pokedex num: " + pokemon.numPokemon;
         info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2;
         info.innerHTML += " Name: " + pokemon.nombre;
@@ -115,21 +121,21 @@ imgCerrada.addEventListener("click", () => {
             pokemon.texto = flavorTextEn(datos).replaceAll("\\n", " " ).replaceAll('"', "").replaceAll("\\f", " " );
             info.innerHTML += " Species: " + pokemon.especie;
             info.innerHTML += " Habitat: " + pokemon.habitat;
-            info.innerHTML += " Description: " + pokemon.texto;
+            descripcion.innerHTML += " Description: " + pokemon.texto;
         }).catch((error2) => {
             console.error("Error en la consulta: " + error2);
         })
+        imgAbierta.setAttribute("src", pokemon.front_default);
 
         //@Sergio Aquí hay que gestionar las imágenes, no se pueden mostrar todas aquí tal y como están. Hay que hacer que en principio solo muestre la default cuando esté cerrada y cuando esté abierta, en un principio la default y luego si pulsa algún check, la que corresponda.
-        addImage(pokemon.front_default, contenido);
-        addImage(pokemon.front_female, contenido);
-        addImage(pokemon.front_shiny, contenido);
-        addImage(pokemon.front_shiny_female, contenido);
-        addImage(pokemon.back_default, contenido);
-        addImage(pokemon.back_female, contenido);
-        addImage(pokemon.back_shiny, contenido);
-        addImage(pokemon.back_shiny_female, contenido);
-        contenido.appendChild(info);
+        //addImage(pokemon.front_default, contenido);
+        //addImage(pokemon.front_female, contenido);
+        //addImage(pokemon.front_shiny, contenido);
+        //addImage(pokemon.front_shiny_female, contenido);
+        //addImage(pokemon.back_default, contenido);
+        //addImage(pokemon.back_female, contenido);
+        //addImage(pokemon.back_shiny, contenido);
+        //addImage(pokemon.back_shiny_female, contenido);
     }).catch((error) => {
         console.error("Error en la consulta: " + error);
     })
