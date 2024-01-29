@@ -89,15 +89,11 @@ imgCerrada.addEventListener("click", () => {
     let url = "https://pokeapi.co/api/v2/pokemon/" + inputBusc.value;
     fetch(url).then((response) => {
         return response.json();
-    }).then((data) => {
-
-        pokemon.nombre =((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name).replaceAll('"', "") : "");
+    }).then((data) => {      
         pokemon.altura =((data.hasOwnProperty('height')) ? JSON.stringify(data.height).replaceAll('"', "") : "");
         pokemon.peso =((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight).replaceAll('"', "") : "")
-        pokemon.numPokemon =((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : "");
         pokemon.tipo1 =((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name).replaceAll('"', "") : "");
         pokemon.tipo2 =((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name).replaceAll('"', "") : "");
-        pokemon.front_default =((data.sprites.front_default !== null) ? data.sprites.front_default : "");
         pokemon.front_female =((data.sprites.front_female !== null) ? data.sprites.front_female : "");
         pokemon.front_shiny =((data.sprites.front_shiny !== null) ? data.sprites.front_shiny : "");
         pokemon.front_shiny_female =((data.sprites.front_shiny_female !== null) ? data.sprites.front_shiny_female : "");
