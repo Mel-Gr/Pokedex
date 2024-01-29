@@ -1,5 +1,5 @@
-#contenido{
-  background-color: rgba(166, 237, 247, 0.712);
+#contenido, #pokedexCerrada{
+  background-color: rgb(206, 249, 255);
   text-align: center;
   border-style: groove;
   border-top: black;
@@ -8,5 +8,9 @@
 }
 .pokedex{
   width: 450px;
+}
+
+#pokearriba{
+  margin-bottom: -5px;
 }
 
