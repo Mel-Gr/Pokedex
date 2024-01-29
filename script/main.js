@@ -75,8 +75,9 @@ movimientos.addEventListener("click", () =>{
 })
 
 imgCerrada.addEventListener("click", () => {
-    pokedexCerrada.setAttribute("hidden","true");
+    pokedexCerrada.style.display = "none";
     abierta = false;
+    contenido.style.display = "block";
     contenido.innerHTML = "";
     let url = "https://pokeapi.co/api/v2/pokemon/" + inputBusc.value;
     fetch(url).then((response) => {
@@ -140,6 +141,8 @@ botonBusc.addEventListener("click", () => {
     }else if (!abierta){
         abierta = true;
         numeroYNombreCerrada.innerHTML = "";
+        pokedexCerrada.style.display = "block";
+        contenido.style.display = "none";
         let url = "https://pokeapi.co/api/v2/pokemon/" + inputBusc.value;
         fetch(url).then((response) => {
             return response.json();
