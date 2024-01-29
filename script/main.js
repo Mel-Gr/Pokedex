@@ -102,7 +102,7 @@ imgCerrada.addEventListener("click", () => {
         pokemon.back_shiny =((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : "");
         pokemon.back_shiny_female =((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : "");
         console.log(pokemon.nombre);
-        info.innerHTML += " Pokedex num: " + pokemon.numPokemon;
+        info.innerHTML += " Number: " + pokemon.numPokemon;
         info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2;
         info.innerHTML += " Name: " + pokemon.nombre;
         info.innerHTML += " Height: " + pokemon.peso;
