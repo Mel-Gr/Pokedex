@@ -74,66 +74,69 @@ movimientos.addEventListener("click", () =>{
 
 })
 
+imgCerrada.addEventListener("click", () => {
+    pokedexCerrada.setAttribute("hidden","true");
+    abierta = false;
+    contenido.innerHTML = "";
+    let url = "https://pokeapi.co/api/v2/pokemon/" + inputBusc.value;
+    fetch(url).then((response) => {
+        return response.json();
+    }).then((data) => {
+
+        pokemon.nombre =((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name).replaceAll('"', "") : "");
+        pokemon.altura =((data.hasOwnProperty('height')) ? JSON.stringify(data.height).replaceAll('"', "") : "");
+        pokemon.peso =((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight).replaceAll('"', "") : "")
+        pokemon.numPokemon =((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : "");
+        pokemon.tipo1 =((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name).replaceAll('"', "") : "");
+        pokemon.tipo2 =((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name).replaceAll('"', "") : "");
+        pokemon.front_default =((data.sprites.front_default !== null) ? data.sprites.front_default : "");
+        pokemon.front_female =((data.sprites.front_female !== null) ? data.sprites.front_female : "");
+        pokemon.front_shiny =((data.sprites.front_shiny !== null) ? data.sprites.front_shiny : "");
+        pokemon.front_shiny_female =((data.sprites.front_shiny_female !== null) ? data.sprites.front_shiny_female : "");
+        pokemon.back_default =((data.sprites.back_default !== null) ? data.sprites.back_default : "");
+        pokemon.back_female =((data.sprites.back_female !== null) ? data.sprites.back_female : "");
+        pokemon.back_shiny =((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : "");
+        pokemon.back_shiny_female =((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : "");
+        console.log(pokemon.nombre);
+        let info = document.createElement("div");
+        info.innerHTML += " Pokedex num: " + pokemon.numPokemon;
+        info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2;
+        info.innerHTML += " Name: " + pokemon.nombre;
+        info.innerHTML += " Height: " + pokemon.peso;
+        info.innerHTML += " Weight: " + pokemon.altura;
+
+        let url2 = data.species.url;
+        fetch(url2).then((respuesta) => {
+            return respuesta.json();
+        }).then((datos) => {
+            pokemon.especie = generaSpecieEn (datos).replaceAll('"', "");
+            pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name).replaceAll('"', "") : "");
+            pokemon.texto = flavorTextEn(datos).replaceAll("\\n", " " ).replaceAll('"', "").replaceAll("\\f", " " );
+            info.innerHTML += " Species: " + pokemon.especie;
+            info.innerHTML += " Habitat: " + pokemon.habitat;
+            info.innerHTML += " Description: " + pokemon.texto;
+        }).catch((error2) => {
+            console.error("Error en la consulta: " + error2);
+        })
+
+        //@Sergio Aquí hay que gestionar las imágenes, no se pueden mostrar todas aquí tal y como están. Hay que hacer que en principio solo muestre la default cuando esté cerrada y cuando esté abierta, en un principio la default y luego si pulsa algún check, la que corresponda.
+        addImage(pokemon.front_default, contenido);
+        addImage(pokemon.front_female, contenido);
+        addImage(pokemon.front_shiny, contenido);
+        addImage(pokemon.front_shiny_female, contenido);
+        addImage(pokemon.back_default, contenido);
+        addImage(pokemon.back_female, contenido);
+        addImage(pokemon.back_shiny, contenido);
+        addImage(pokemon.back_shiny_female, contenido);
+        contenido.appendChild(info);
+    }).catch((error) => {
+        console.error("Error en la consulta: " + error);
+    })
+})
 
 botonBusc.addEventListener("click", () => {
     if(abierta){
-        pokedexCerrada.setAttribute("hidden","true");
-        abierta = false;
-        contenido.innerHTML = "";
-        let url = "https://pokeapi.co/api/v2/pokemon/" + inputBusc.value;
-        fetch(url).then((response) => {
-            return response.json();
-        }).then((data) => {
-
-            pokemon.nombre =((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name).replaceAll('"', "") : "");
-            pokemon.altura =((data.hasOwnProperty('height')) ? JSON.stringify(data.height).replaceAll('"', "") : "");
-            pokemon.peso =((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight).replaceAll('"', "") : "")
-            pokemon.numPokemon =((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : "");
-            pokemon.tipo1 =((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name).replaceAll('"', "") : "");
-            pokemon.tipo2 =((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name).replaceAll('"', "") : "");
-            pokemon.front_default =((data.sprites.front_default !== null) ? data.sprites.front_default : "");
-            pokemon.front_female =((data.sprites.front_female !== null) ? data.sprites.front_female : "");
-            pokemon.front_shiny =((data.sprites.front_shiny !== null) ? data.sprites.front_shiny : "");
-            pokemon.front_shiny_female =((data.sprites.front_shiny_female !== null) ? data.sprites.front_shiny_female : "");
-            pokemon.back_default =((data.sprites.back_default !== null) ? data.sprites.back_default : "");
-            pokemon.back_female =((data.sprites.back_female !== null) ? data.sprites.back_female : "");
-            pokemon.back_shiny =((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : "");
-            pokemon.back_shiny_female =((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : "");
-            console.log(pokemon.nombre);
-            let info = document.createElement("div");
-            info.innerHTML += " Pokedex num: " + pokemon.numPokemon;
-            info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2;
-            info.innerHTML += " Name: " + pokemon.nombre;
-            info.innerHTML += " Height: " + pokemon.peso;
-            info.innerHTML += " Weight: " + pokemon.altura;
-
-            let url2 = data.species.url;
-            fetch(url2).then((respuesta) => {
-                return respuesta.json();
-            }).then((datos) => {
-                pokemon.especie = generaSpecieEn (datos).replaceAll('"', "");
-                pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name).replaceAll('"', "") : "");
-                pokemon.texto = flavorTextEn(datos).replaceAll("\\n", " " ).replaceAll('"', "").replaceAll("\\f", " " );
-                info.innerHTML += " Species: " + pokemon.especie;
-                info.innerHTML += " Habitat: " + pokemon.habitat;
-                info.innerHTML += " Description: " + pokemon.texto;
-            }).catch((error2) => {
-                console.error("Error en la consulta: " + error2);
-            })
-
-            //@Sergio Aquí hay que gestionar las imágenes, no se pueden mostrar todas aquí tal y como están. Hay que hacer que en principio solo muestre la default cuando esté cerrada y cuando esté abierta, en un principio la default y luego si pulsa algún check, la que corresponda.
-            addImage(pokemon.front_default, contenido);
-            addImage(pokemon.front_female, contenido);
-            addImage(pokemon.front_shiny, contenido);
-            addImage(pokemon.front_shiny_female, contenido);
-            addImage(pokemon.back_default, contenido);
-            addImage(pokemon.back_female, contenido);
-            addImage(pokemon.back_shiny, contenido);
-            addImage(pokemon.back_shiny_female, contenido);
-            contenido.appendChild(info);
-        }).catch((error) => {
-            console.error("Error en la consulta: " + error);
-        })
+        
     }else if (!abierta){
         abierta = true;
         numeroYNombreCerrada.innerHTML = "";
@@ -145,8 +148,8 @@ botonBusc.addEventListener("click", () => {
             pokemon.numPokemon =((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : "");
             pokemon.front_default =((data.sprites.front_default !== null) ? data.sprites.front_default : "");
             console.log(pokemon.nombre);
-            addImage(pokemon.front_default, pokedexCerrada);
-            numeroYNombreCerrada.innerHTML += pokemon.numPokemon;
+            imgCerrada.setAttribute("src", pokemon.front_default);
+            numeroYNombreCerrada.innerHTML += "#" + pokemon.numPokemon;
             numeroYNombreCerrada.innerHTML += " " + pokemon.nombre;
         }).catch((error) => {
             console.error("Error en la consulta: " + error);
