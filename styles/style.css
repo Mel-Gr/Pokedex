@@ -13,10 +13,8 @@
 #pokearriba{
   margin-bottom: -5px;
 }
-#pokedexCerrada{
-  margin: auto;
+#general{
+  position: absolute;
+  top: 15%;
+  left: 35%;
 }
-#contenido{
-  margin: auto;
-}
-
