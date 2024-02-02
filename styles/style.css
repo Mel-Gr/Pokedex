@@ -18,3 +18,6 @@
   top: 15%;
   left: 35%;
 }
+#contenido, #pokedexCerrada{
+  width: 445px;
+}
