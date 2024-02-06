@@ -11,6 +11,7 @@
   width: 450px;
 }
 #general{
+  margin-top: 10%;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -27,4 +28,14 @@
 }
 #lupaYBotones{
   position: relative;
+}
+#contenido{
+  display: flex;
+  flex-direction: column;
+}
+#imgAbierta{
+  width: 40%;
+}
+#info{
+  text-align: left;
 }

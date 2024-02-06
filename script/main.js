@@ -102,11 +102,11 @@ imgCerrada.addEventListener("click", () => {
         pokemon.back_shiny =((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : "");
         pokemon.back_shiny_female =((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : "");
         console.log(pokemon.nombre);
-        info.innerHTML += " Number: " + pokemon.numPokemon;
-        info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2;
-        info.innerHTML += " Name: " + pokemon.nombre;
+        info.innerHTML += " Number: " + pokemon.numPokemon + "<br>";
+        info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2  + "<br>";
+        info.innerHTML += " Name: " + pokemon.nombre + "<br>";
         info.innerHTML += " Height: " + pokemon.peso;
-        info.innerHTML += " Weight: " + pokemon.altura;
+        info.innerHTML += " Weight: " + pokemon.altura  + "<br>";
 
         let url2 = data.species.url;
         fetch(url2).then((respuesta) => {
@@ -115,7 +115,7 @@ imgCerrada.addEventListener("click", () => {
             pokemon.especie = generaSpecieEn (datos).replaceAll('"', "");
             pokemon.habitat = ((datos.hasOwnProperty('habitat') && (datos.habitat !== null)) ? JSON.stringify(datos.habitat.name).replaceAll('"', "") : "");
             pokemon.texto = flavorTextEn(datos).replaceAll("\\n", " " ).replaceAll('"', "").replaceAll("\\f", " " );
-            info.innerHTML += " Species: " + pokemon.especie;
+            info.innerHTML += " Species: " + pokemon.especie + "<br>";
             info.innerHTML += " Habitat: " + pokemon.habitat;
             descripcion.innerHTML += " Description: " + pokemon.texto;
         }).catch((error2) => {
