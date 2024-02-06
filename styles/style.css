@@ -4,20 +4,27 @@
   border-style: groove;
   border-top: black;
   border-bottom: black;
+  width: 445px;
 
 }
 .pokedex{
   width: 450px;
 }
-
+#general{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 #pokearriba{
   margin-bottom: -5px;
 }
-#general{
-  position: absolute;
-  top: 15%;
-  left: 35%;
+#avanzar, #retroceder{
+  height: 50px; 
+  margin: 20px; 
+  background: white; 
+  border: 0
 }
-#contenido, #pokedexCerrada{
-  width: 445px;
+#lupaYBotones{
+  position: relative;
 }
