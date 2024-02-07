@@ -14,6 +14,8 @@ const info = document.getElementById("info");
 const descripcion = document.getElementById("descripcion");
 const movimientos = document.getElementById("movimientos");
 const habilidades = document.getElementById("habilidades");
+const checkboxShiny = document.getElementById("shiny");
+const checkboxFemale = document.getElementById("female");
 
 const imgCerrada = document.getElementById("imgCerrada");
 const numeroYNombreCerrada = document.getElementById("numeroYNombreCerrada");
@@ -123,15 +125,50 @@ imgCerrada.addEventListener("click", () => {
         })
         imgAbierta.setAttribute("src", pokemon.front_default);
 
-        //@Sergio Aquí hay que gestionar las imágenes, no se pueden mostrar todas aquí tal y como están. Hay que hacer que en principio solo muestre la default cuando esté cerrada y cuando esté abierta, en un principio la default y luego si pulsa algún check, la que corresponda.
-        //addImage(pokemon.front_default, contenido);
-        //addImage(pokemon.front_female, contenido);
-        //addImage(pokemon.front_shiny, contenido);
-        //addImage(pokemon.front_shiny_female, contenido);
-        //addImage(pokemon.back_default, contenido);
-        //addImage(pokemon.back_female, contenido);
-        //addImage(pokemon.back_shiny, contenido);
-        //addImage(pokemon.back_shiny_female, contenido);
+        checkboxShiny.addEventListener("change", () => {
+            if (checkboxShiny.checked) {
+                    imgAbierta.setAttribute("src", pokemon.front_shiny);
+            } else {
+                    imgAbierta.setAttribute("src", pokemon.front_default);
+            }
+        });
+
+        /*checkboxShiny.addEventListener("change", () => {
+            if (checkboxShiny.checked && checkboxFemale.checked) {
+                imgAbierta.setAttribute("src", pokemon.front_shiny_female);
+            }else if(checkboxFemale.checked){
+                imgAbierta.setAttribute("src", pokemon.front_female);
+            }else {
+                imgAbierta.setAttribute("src", pokemon.front_default);
+        }
+        });*/
+        
+        imgAbierta.addEventListener("mouseover", () => {
+            if (imgAbierta.getAttribute("src") === pokemon.front_default) {
+                imgAbierta.setAttribute("src", pokemon.back_default);
+            } else if (imgAbierta.getAttribute("src") === pokemon.front_shiny) {
+                imgAbierta.setAttribute("src", pokemon.back_shiny);
+            }else if (imgAbierta.getAttribute("src") === pokemon.front_female) {
+                imgAbierta.setAttribute("src", pokemon.back_female);
+            }else if (imgAbierta.getAttribute("src") === pokemon.front_shiny_female) {
+                imgAbierta.setAttribute("src", pokemon.back_shiny_female);
+            }
+            
+        });
+        
+        imgAbierta.addEventListener("mouseout", () => {
+            if (imgAbierta.getAttribute("src") === pokemon.back_default) {
+                imgAbierta.setAttribute("src", pokemon.front_default);
+            } else if (imgAbierta.getAttribute("src") === pokemon.back_shiny) {
+                imgAbierta.setAttribute("src", pokemon.front_shiny);
+            }   else if (imgAbierta.getAttribute("src") === pokemon.back_female) {
+                imgAbierta.setAttribute("src", pokemon.front_female);
+            }else if (imgAbierta.getAttribute("src") === pokemon.back_shiny_female) {
+                imgAbierta.setAttribute("src", pokemon.front_shiny_female);
+            }
+        });
+
+        
     }).catch((error) => {
         console.error("Error en la consulta: " + error);
     })
