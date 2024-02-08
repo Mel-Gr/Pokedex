@@ -84,7 +84,7 @@ movimientos.addEventListener("click", () =>{
 
 imgCerrada.addEventListener("click", () => {
     pokedexCerrada.style.display = "none";
-    abierta = false;
+    abierta = true;
     contenido.style.display = "block";
     info.innerHTML = "";
     descripcion.innerHTML = "";
@@ -185,8 +185,14 @@ imgCerrada.addEventListener("click", () => {
 botonBusc.addEventListener("click", () => {
     if(abierta){
         //Mostrar la barra encima de la pokedex
+        contadorPokemonId = parseInt(inputBusc.value);
+        obtenerPokemonPokedexAbierta(contadorPokemonId)
+
     }else if (!abierta){
-        numeroYNombreCerrada.innerHTML = "";
+        contadorPokemonId = parseInt(inputBusc.value);
+        obtenerPokemonPokedexCerrada(contadorPokemonId);
+
+       /* numeroYNombreCerrada.innerHTML = "";
         pokedexCerrada.style.display = "block";
         contenido.style.display = "none";
         let url = "https://pokeapi.co/api/v2/pokemon/" + inputBusc.value;
@@ -202,7 +208,147 @@ botonBusc.addEventListener("click", () => {
             numeroYNombreCerrada.innerHTML += " " + pokemon.nombre;
         }).catch((error) => {
             console.error("Error en la consulta: " + error);
-        })
+        })*/
     }
 
 });
+
+const max_numPokemon= 1025;
+const min_numPokemon = 1;
+
+let contadorPokemonId = min_numPokemon; 
+
+
+avanzar.addEventListener("click", () => {
+    contadorPokemonId++; 
+    if (contadorPokemonId > max_numPokemon) {
+        contadorPokemonId = min_numPokemon; 
+    }
+    
+    if(abierta){
+        obtenerPokemonPokedexAbierta(contadorPokemonId)
+    }else{
+        obtenerPokemonPokedexCerrada(contadorPokemonId);
+    }
+    
+});
+
+retroceder.addEventListener("click", () => {
+    contadorPokemonId--; 
+    if (contadorPokemonId < min_numPokemon) {
+        contadorPokemonId = max_numPokemon; 
+    }
+    if(abierta){
+        obtenerPokemonPokedexAbierta(contadorPokemonId)
+    }else{
+        obtenerPokemonPokedexCerrada(contadorPokemonId);
+    }
+    
+});
+
+function obtenerPokemonPokedexCerrada(pokemonId) {
+    let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+    fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            
+            pokemon.nombre = ((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name).replaceAll('"', "") : "");
+            pokemon.numPokemon = ((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : "");
+            pokemon.front_default = ((data.sprites.front_default !== null) ? data.sprites.front_default : "");
+            imgCerrada.setAttribute("src", pokemon.front_default);
+            numeroYNombreCerrada.innerHTML = "#" + pokemon.numPokemon + " " + pokemon.nombre;
+        })
+        .catch((error) => {
+            console.error("Error en la consulta: " + error);
+        });
+}
+
+
+function obtenerPokemonPokedexAbierta(pokemonId) {
+    let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+    fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            
+            pokemon.nombre = ((data.forms.hasOwnProperty('0')) ? JSON.stringify(data.forms[0].name).replaceAll('"', "") : "");
+            pokemon.numPokemon = ((data.hasOwnProperty('id')) ? JSON.stringify(data.id).replaceAll('"', "") : "");
+            pokemon.front_default = ((data.sprites.front_default !== null) ? data.sprites.front_default : "");
+            pokemon.front_female = ((data.sprites.front_female !== null) ? data.sprites.front_female : "");
+            pokemon.front_shiny = ((data.sprites.front_shiny !== null) ? data.sprites.front_shiny : "");
+            pokemon.front_shiny_female = ((data.sprites.front_shiny_female !== null) ? data.sprites.front_shiny_female : "");
+            pokemon.back_default = ((data.sprites.back_default !== null) ? data.sprites.back_default : "");
+            pokemon.back_female = ((data.sprites.back_female !== null) ? data.sprites.back_female : "");
+            pokemon.back_shiny = ((data.sprites.back_shiny !== null) ? data.sprites.back_shiny : "");
+            pokemon.back_shiny_female = ((data.sprites.back_shiny_female !== null) ? data.sprites.back_shiny_female : "");
+
+            
+            info.innerHTML = " Number: " + pokemon.numPokemon + "<br>";
+            info.innerHTML += " Type: " + pokemon.tipo1 + pokemon.tipo2  + "<br>";
+            info.innerHTML += " Name: " + pokemon.nombre + "<br>";
+            info.innerHTML += " Height: " + pokemon.peso;
+            info.innerHTML += " Weight: " + pokemon.altura  + "<br>";
+            
+
+            imgAbierta.setAttribute("src", pokemon.front_default);
+
+            checkboxShiny.addEventListener("change", () => {
+                if (checkboxShiny.checked) {
+                        imgAbierta.setAttribute("src", pokemon.front_shiny);
+                } else {
+                        imgAbierta.setAttribute("src", pokemon.front_default);
+                }
+            });
+    
+            checkboxFemale.addEventListener("change", () => {
+                if (checkboxFemale.checked) {
+                    if (checkboxShiny.checked && pokemon.front_shiny_female !== "") {
+                        imgAbierta.setAttribute("src", pokemon.front_shiny_female);
+                    } else if (pokemon.front_female !== "") {
+                        imgAbierta.setAttribute("src", pokemon.front_female);
+                    } else if (checkboxShiny.checked && pokemon.front_female === ""){
+                        imgAbierta.setAttribute("src", pokemon.front_shiny);
+                    } else {
+                        imgAbierta.setAttribute("src", pokemon.front_default);
+                    }
+                } else {
+                    if (checkboxShiny.checked) {
+                        imgAbierta.setAttribute("src", pokemon.front_shiny);
+                    } else {
+                        imgAbierta.setAttribute("src", pokemon.front_default);
+                    }
+                }
+            });
+
+            imgAbierta.addEventListener("mouseover", () => {
+                if (imgAbierta.getAttribute("src") === pokemon.front_default) {
+                    imgAbierta.setAttribute("src", pokemon.back_default);
+                } else if (imgAbierta.getAttribute("src") === pokemon.front_shiny) {
+                    imgAbierta.setAttribute("src", pokemon.back_shiny);
+                } else if (imgAbierta.getAttribute("src") === pokemon.front_female) {
+                    imgAbierta.setAttribute("src", pokemon.back_female);
+                } else if (imgAbierta.getAttribute("src") === pokemon.front_shiny_female) {
+                    imgAbierta.setAttribute("src", pokemon.back_shiny_female);
+                }
+            });
+
+            imgAbierta.addEventListener("mouseout", () => {
+                if (imgAbierta.getAttribute("src") === pokemon.back_default) {
+                    imgAbierta.setAttribute("src", pokemon.front_default);
+                } else if (imgAbierta.getAttribute("src") === pokemon.back_shiny) {
+                    imgAbierta.setAttribute("src", pokemon.front_shiny);
+                } else if (imgAbierta.getAttribute("src") === pokemon.back_female) {
+                    imgAbierta.setAttribute("src", pokemon.front_female);
+                } else if (imgAbierta.getAttribute("src") === pokemon.back_shiny_female) {
+                    imgAbierta.setAttribute("src", pokemon.front_shiny_female);
+                }
+            });
+
+        })
+        .catch((error) => {
+            console.error("Error en la consulta: " + error);
+        });
+}
