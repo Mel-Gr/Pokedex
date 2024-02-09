@@ -16,6 +16,8 @@ const movimientos = document.getElementById("movimientos");
 const habilidades = document.getElementById("habilidades");
 const checkboxShiny = document.getElementById("shiny");
 const checkboxFemale = document.getElementById("female");
+const contenedorAbierto = document.getElementById("contenedorAbierto");
+const contenedorAbiertoImg = document.getElementById("contenedorAbiertoImg");
 
 const imgCerrada = document.getElementById("imgCerrada");
 const numeroYNombreCerrada = document.getElementById("numeroYNombreCerrada");
@@ -81,6 +83,19 @@ movimientos.addEventListener("click", () =>{
   
 
 })
+
+function pokemonNotFound(){
+    if(abierta){
+        imgAbierta.setAttribute("src", "");
+        info.innerHTML = "Pokemon no encontrado";
+        descripcion.innerHTML = "";
+        contenedorAbiertoImg.style.display = "none";
+        contenedorAbierto.style.display = "none";
+    }else{
+        imgCerrada.setAttribute("src", "");
+        numeroYNombreCerrada.innerHTML = "Pokemon no encontrado";
+    }
+}
 
 imgCerrada.addEventListener("click", () => {
     pokedexCerrada.style.display = "none";
@@ -178,6 +193,7 @@ imgCerrada.addEventListener("click", () => {
 
         
     }).catch((error) => {
+        pokemonNotFound();
         console.error("Error en la consulta: " + error);
     })
 })
@@ -261,6 +277,7 @@ function obtenerPokemonPokedexCerrada(pokemonId) {
             numeroYNombreCerrada.innerHTML = "#" + pokemon.numPokemon + " " + pokemon.nombre;
         })
         .catch((error) => {
+            pokemonNotFound();
             console.error("Error en la consulta: " + error);
         });
 }
@@ -268,6 +285,8 @@ function obtenerPokemonPokedexCerrada(pokemonId) {
 
 function obtenerPokemonPokedexAbierta(pokemonId) {
     let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+    contenedorAbierto.style.display = "block";
+    contenedorAbiertoImg.style.display = "flex";
     fetch(url)
         .then((response) => {
             return response.json();
@@ -349,6 +368,7 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
 
         })
         .catch((error) => {
+            pokemonNotFound();
             console.error("Error en la consulta: " + error);
         });
 }
