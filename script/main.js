@@ -124,6 +124,15 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
 
     abierta = true;
     
+    if(checkboxFemale.checked){
+        checkboxFemale.checked = false
+    }
+
+    if(checkboxShiny.checked){
+        checkboxShiny.checked = false
+    }
+
+
     info.innerHTML = "";
     descripcion.innerHTML = "";
 
