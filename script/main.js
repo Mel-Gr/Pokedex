@@ -166,14 +166,22 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
         })
 
         imgAbierta.setAttribute("src", pokemon.front_default);
-
+        
             checkboxShiny.addEventListener("change", () => {
-                if (checkboxShiny.checked) {
-                        imgAbierta.setAttribute("src", pokemon.front_shiny);
+            if (checkboxShiny.checked) {   
+                if (checkboxShiny.checked && checkboxFemale.checked) {
+                        imgAbierta.setAttribute("src", pokemon.front_shiny_female);
                 } else {
-                        imgAbierta.setAttribute("src", pokemon.front_default);
+                        imgAbierta.setAttribute("src", pokemon.front_shiny);
                 }
-            });
+            }else if(checkboxFemale.checked){
+                imgAbierta.setAttribute("src", pokemon.front_female);
+            }else {
+                imgAbierta.setAttribute("src", pokemon.front_default);
+            }
+        });
+        
+        
     
             checkboxFemale.addEventListener("change", () => {
                 if (checkboxFemale.checked) {
