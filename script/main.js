@@ -174,7 +174,7 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
                 } else {
                         imgAbierta.setAttribute("src", pokemon.front_shiny);
                 }
-            }else if(checkboxFemale.checked){
+            }else if(checkboxFemale.checked && pokemon.front_female !== ""){
                 imgAbierta.setAttribute("src", pokemon.front_female);
             }else {
                 imgAbierta.setAttribute("src", pokemon.front_default);
