@@ -133,7 +133,7 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
         pokemon.altura =((data.hasOwnProperty('height')) ? JSON.stringify(data.height).replaceAll('"', "") : "");
         pokemon.peso =((data.hasOwnProperty('weight')) ? JSON.stringify(data.weight).replaceAll('"', "") : "")
         pokemon.tipo1 =((data.types.hasOwnProperty('0')) ? JSON.stringify(data.types[0].type.name).replaceAll('"', "") : "");
-        pokemon.tipo2 =((data.types.hasOwnProperty('1')) ? "/" + JSON.stringify(data.types[1].type.name).replaceAll('"', "") : "");
+        pokemon.tipo2 =((data.types.hasOwnProperty('1')) ? " / " + JSON.stringify(data.types[1].type.name).replaceAll('"', "") : "");
         pokemon.front_female =((data.sprites.front_female !== null) ? data.sprites.front_female : "");
         pokemon.front_shiny =((data.sprites.front_shiny !== null) ? data.sprites.front_shiny : "");
         pokemon.front_shiny_female =((data.sprites.front_shiny_female !== null) ? data.sprites.front_shiny_female : "");
