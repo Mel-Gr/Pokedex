@@ -89,8 +89,9 @@ function pokemonNotFound(){
         imgAbierta.setAttribute("src", "");
         info.innerHTML = "Pokemon no encontrado";
         descripcion.innerHTML = "";
-        contenedorAbiertoImg.style.display = "none";
+        imgAbierta.style.display = "none";
         contenedorAbierto.style.display = "none";
+        info.style.marginLeft = "30%";
     }else{
         imgCerrada.setAttribute("src", "");
         numeroYNombreCerrada.innerHTML = "Pokemon no encontrado";
@@ -121,6 +122,9 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
     let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
     pokedexCerrada.style.display = "none";
     contenido.style.display = "block";
+    imgAbierta.style.display = "block";
+    info.style.marginLeft = "0px";
+    contenedorAbierto.style.display = "block";
 
     abierta = true;
     
@@ -176,44 +180,41 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
 
         imgAbierta.setAttribute("src", pokemon.front_default);
         
-        checkboxShiny.addEventListener("change", () => {
-            if (checkboxShiny.checked) {
+            checkboxShiny.addEventListener("change", () => {
+            if (checkboxShiny.checked) {   
                 if (checkboxShiny.checked && checkboxFemale.checked) {
-                    if (pokemon.front_shiny_female !== "") {
                         imgAbierta.setAttribute("src", pokemon.front_shiny_female);
-                    } else {
-                        imgAbierta.setAttribute("src", pokemon.front_shiny);
-                    }
                 } else {
-                    imgAbierta.setAttribute("src", pokemon.front_shiny);
+                        imgAbierta.setAttribute("src", pokemon.front_shiny);
                 }
-            } else if (checkboxFemale.checked && pokemon.front_female !== "") {
+            }else if(checkboxFemale.checked && pokemon.front_female !== ""){
                 imgAbierta.setAttribute("src", pokemon.front_female);
-            } else {
+            }else {
                 imgAbierta.setAttribute("src", pokemon.front_default);
             }
         });
-
-        checkboxFemale.addEventListener("change", () => {
-            if (checkboxFemale.checked) {
-                if (checkboxShiny.checked && pokemon.front_shiny_female !== "") {
-                    imgAbierta.setAttribute("src", pokemon.front_shiny_female);
-                } else if (pokemon.front_female !== "") {
-                    imgAbierta.setAttribute("src", pokemon.front_female);
-                } else if (checkboxShiny.checked && pokemon.front_shiny !== "") {
-                    imgAbierta.setAttribute("src", pokemon.front_shiny);
-                } else {
-                    imgAbierta.setAttribute("src", pokemon.front_default);
-                }
-            } else {
-                if (checkboxShiny.checked) {
-                    imgAbierta.setAttribute("src", pokemon.front_shiny);
-                } else {
-                    imgAbierta.setAttribute("src", pokemon.front_default);
-                }
-            }
-        });
         
+        
+    
+            checkboxFemale.addEventListener("change", () => {
+                if (checkboxFemale.checked) {
+                    if (checkboxShiny.checked && pokemon.front_shiny_female !== "") {
+                        imgAbierta.setAttribute("src", pokemon.front_shiny_female);
+                    } else if (pokemon.front_female !== "") {
+                        imgAbierta.setAttribute("src", pokemon.front_female);
+                    } else if (checkboxShiny.checked && pokemon.front_female === ""){
+                        imgAbierta.setAttribute("src", pokemon.front_shiny);
+                    } else {
+                        imgAbierta.setAttribute("src", pokemon.front_default);
+                    }
+                } else {
+                    if (checkboxShiny.checked) {
+                        imgAbierta.setAttribute("src", pokemon.front_shiny);
+                    } else {
+                        imgAbierta.setAttribute("src", pokemon.front_default);
+                    }
+                }
+            });
 
             imgAbierta.addEventListener("mouseover", () => {
                 if (imgAbierta.getAttribute("src") === pokemon.front_default) {
@@ -254,44 +255,31 @@ movimientos.addEventListener("click", () =>{
 imgCerrada.addEventListener("click", () => {
     obtenerPokemonPokedexAbierta(pokemon.numPokemon);
 
-    checkboxShiny.addEventListener("change", () => {
-        if (checkboxShiny.checked) {
-            if (checkboxShiny.checked && checkboxFemale.checked) {
-                if (pokemon.front_shiny_female !== "") {
-                    imgAbierta.setAttribute("src", pokemon.front_shiny_female);
-                } else {
+        checkboxShiny.addEventListener("change", () => {
+            if (checkboxShiny.checked) {
                     imgAbierta.setAttribute("src", pokemon.front_shiny);
+            } else {
+                    imgAbierta.setAttribute("src", pokemon.front_default);
+            }
+        });
+
+        checkboxFemale.addEventListener("change", () => {
+            if (checkboxFemale.checked) {
+                if (checkboxShiny.checked && pokemon.front_shiny_female !== "") {
+                    imgAbierta.setAttribute("src", pokemon.front_shiny_female);
+                } else if (pokemon.front_female !== "") {
+                    imgAbierta.setAttribute("src", pokemon.front_female);
+                } else {
+                    imgAbierta.setAttribute("src", pokemon.front_default);
                 }
             } else {
-                imgAbierta.setAttribute("src", pokemon.front_shiny);
+                if (checkboxShiny.checked) {
+                    imgAbierta.setAttribute("src", pokemon.front_shiny);
+                } else {
+                    imgAbierta.setAttribute("src", pokemon.front_default);
+                }
             }
-        } else if (checkboxFemale.checked && pokemon.front_female !== "") {
-            imgAbierta.setAttribute("src", pokemon.front_female);
-        } else {
-            imgAbierta.setAttribute("src", pokemon.front_default);
-        }
-    });
-    
-    checkboxFemale.addEventListener("change", () => {
-        if (checkboxFemale.checked) {
-            if (checkboxShiny.checked && pokemon.front_shiny_female !== "") {
-                imgAbierta.setAttribute("src", pokemon.front_shiny_female);
-            } else if (pokemon.front_female !== "") {
-                imgAbierta.setAttribute("src", pokemon.front_female);
-            } else if (checkboxShiny.checked && pokemon.front_shiny !== "") {
-                imgAbierta.setAttribute("src", pokemon.front_shiny);
-            } else {
-                imgAbierta.setAttribute("src", pokemon.front_default);
-            }
-        } else {
-            if (checkboxShiny.checked) {
-                imgAbierta.setAttribute("src", pokemon.front_shiny);
-            } else {
-                imgAbierta.setAttribute("src", pokemon.front_default);
-            }
-        }
-    });
-    
+        });
         
         imgAbierta.addEventListener("mouseover", () => {
             if (imgAbierta.getAttribute("src") === pokemon.front_default) {
