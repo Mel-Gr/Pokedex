@@ -100,6 +100,8 @@ function pokemonNotFound(){
 
 function obtenerPokemonPokedexCerrada(pokemonId) {
     let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+    pokedexCerrada.style.display = "block";
+    contenido.style.display = "none";
     fetch(url)
         .then((response) => {
             return response.json();
@@ -310,14 +312,13 @@ imgCerrada.addEventListener("click", () => {
 botonBusc.addEventListener("click", () => {
     if(abierta){
         //Mostrar la barra encima de la pokedex
-        obtenerPokemonPokedexCerrada(parseInt(inputBusc.value));
-        obtenerPokemonPokedexAbierta(parseInt(inputBusc.value));
+        obtenerPokemonPokedexCerrada(inputBusc.value);
 
     }else if (!abierta){
         numeroYNombreCerrada.innerHTML = "";
         pokedexCerrada.style.display = "block";
         contenido.style.display = "none";
-        obtenerPokemonPokedexCerrada(parseInt(inputBusc.value));
+        obtenerPokemonPokedexCerrada(inputBusc.value);
     }
 
 });
