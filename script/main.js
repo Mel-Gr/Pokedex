@@ -218,9 +218,9 @@ function cambiarColorFondo(tipo1, tipo2) {
                 color2 = "#FFFFFF"; // Color blanco por defecto
                 break;
         }
-        contenido.style.background = `linear-gradient(to right, ${color1}, ${color2})`;
+        imgAbierta.style.background = `linear-gradient(to right, ${color1}, ${color2})`;
     } else {
-        contenido.style.background = color1;
+        imgAbierta.style.background = color1;
     }
 }
 

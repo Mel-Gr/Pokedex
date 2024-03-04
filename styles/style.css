@@ -35,6 +35,8 @@
 }
 #imgAbierta{
   width: 40%;
+  border-radius: 10%;
+  margin: 3%
 }
 #info{
   margin-top: 7%;
