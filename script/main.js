@@ -228,6 +228,7 @@ function obtenerPokemonPokedexCerrada(pokemonId) {
     let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
     pokedexCerrada.style.display = "block";
     contenido.style.display = "none";
+    abierta = false;
     fetch(url)
         .then((response) => {
             return response.json();
