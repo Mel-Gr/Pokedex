@@ -101,58 +101,58 @@ function cambiarColorFondo(tipo1, tipo2) {
     let color1, color2;
     switch (tipo1) {
         case "normal":
-            color1 = "#A8A77A";
+            color1 = "#D1E8E7";
             break;
         case "fire":
-            color1 = "#EE8130";
+            color1 = "#fc5e3e93";
             break;
         case "water":
-            color1 = "#6390F0";
+            color1 = "#3cbcdcb4";
             break;
         case "electric":
-            color1 = "#F7D02C";
+            color1 = "#f7ce2ca1";
             break;
         case "grass":
-            color1 = "#7AC74C";
+            color1 = "#A5F1AC";
             break;
         case "ice":
-            color1 = "#96D9D6";
+            color1 = "#C7F1F0";
             break;
         case "fighting":
-            color1 = "#C22E28";
+            color1 = "#e49ba9";
             break;
         case "poison":
-            color1 = "#A33EA1";
+            color1 = "#b6a1e8";
             break;
         case "ground":
             color1 = "#E2BF65";
             break;
         case "flying":
-            color1 = "#A98FF3";
+            color1 = "#94BCD6";
             break;
         case "psychic":
-            color1 = "#F95587";
+            color1 = "#f95586a6";
             break;
         case "bug":
-            color1 = "#A6B91A";
+            color1 = "#c9ea8b";
             break;
         case "rock":
-            color1 = "#B6A136";
+            color1 = "#dcbe9a";
             break;
         case "ghost":
-            color1 = "#735797";
+            color1 = "#73579785";
             break;
         case "dragon":
-            color1 = "#6F35FC";
+            color1 = "#6d35fc94";
             break;
         case "dark":
-            color1 = "#705746";
+            color1 = "#00000096";
             break;
         case "steel":
-            color1 = "#B7B7CE";
+            color1 = "#a1aec4";
             break;
         case "fairy":
-            color1 = "#D685AD";
+            color1 = "#fe9bf2dc";
             break;
         default:
             color1 = "#FFFFFF";
@@ -161,58 +161,58 @@ function cambiarColorFondo(tipo1, tipo2) {
     if (tipo2) {
         switch (tipo2) {
             case "normal":
-                color2 = "#A8A77A";
+                color2 = "#D1E8E7";
                 break;
             case "fire":
-                color2 = "#EE8130";
+                color2 = "#fc5e3e93";
                 break;
             case "water":
-                color2 = "#6390F0";
+                color2 = "#3cbcdcb4";
                 break;
             case "electric":
-                color2 = "#F7D02C";
+                color2 = "#f7ce2ca1";
                 break;
             case "grass":
-                color2 = "#7AC74C";
+                color2 = "#A5F1AC";
                 break;
             case "ice":
-                color2 = "#96D9D6";
+                color2 = "#C7F1F0";
                 break;
             case "fighting":
-                color2 = "#C22E28";
+                color2 = "#e49ba9";
                 break;
             case "poison":
-                color2 = "#A33EA1";
+                color2 = "#b6a1e8";
                 break;
             case "ground":
                 color2 = "#E2BF65";
                 break;
             case "flying":
-                color2 = "#A98FF3";
+                color2 = "#94BCD6";
                 break;
             case "psychic":
-                color2 = "#F95587";
+                color2 = "#f95586a6";
                 break;
             case "bug":
-                color2 = "#A6B91A";
+                color2 = "#c9ea8b";
                 break;
             case "rock":
-                color2 = "#B6A136";
+                color2 = "#dcbe9a";
                 break;
             case "ghost":
-                color2 = "#735797";
+                color2 = "#73579785";
                 break;
             case "dragon":
-                color2 = "#6F35FC";
+                color2 = "#6d35fc94";
                 break;
             case "dark":
-                color2 = "#705746";
+                color2 = "#00000096";
                 break;
             case "steel":
-                color2 = "#B7B7CE";
+                color2 = "#a1aec4";
                 break;
             case "fairy":
-                color2 = "#D685AD";
+                color2 = "#fe9bf2dc";
                 break;
             default:
                 color2 = "#FFFFFF"; // Color blanco por defecto
