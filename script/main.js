@@ -316,7 +316,7 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
             pokemon.texto = flavorTextEn(datos).replaceAll("\\n", " ").replaceAll('"', "").replaceAll("\\f", " ");
             info.innerHTML += " Species: " + pokemon.especie + "<br>";
             info.innerHTML += " Habitat: " + pokemon.habitat;
-            descripcion.innerHTML += " Description: " + pokemon.texto;
+            descripcion.innerHTML += " <h3>Description:</h3>" + pokemon.texto;
         }).catch((error2) => {
             console.error("Error en la consulta: " + error2);
         })

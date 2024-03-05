@@ -57,6 +57,7 @@ body{
 }
 
 #descripcion{
-  max-height: 150px;
+  max-height: 140px;
   overflow-y: scroll;
+  font-size: small;
 }
