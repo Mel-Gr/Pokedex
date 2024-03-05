@@ -14,9 +14,6 @@ const imgAbierta = document.getElementById("imgAbierta");
 const info = document.getElementById("info");
 const descripcion = document.getElementById("descripcion");
 
-const movimientosDiv = document.getElementById("movimientos");
-
-const habilidades = document.getElementById("habilidades");
 const checkboxShiny = document.getElementById("shiny");
 const checkboxFemale = document.getElementById("female");
 const contenedorAbierto = document.getElementById("contenedorAbierto");
@@ -24,9 +21,6 @@ const contenedorAbiertoImg = document.getElementById("contenedorAbiertoImg");
 
 const imgCerrada = document.getElementById("imgCerrada");
 const numeroYNombreCerrada = document.getElementById("numeroYNombreCerrada");
-
-const ul_movimientos = document.getElementById("ul_movimientos");
-const ul_habilidades = document.getElementById("ul_habilidades");
 
 const max_numPokemon = 1025;
 const min_numPokemon = 1;
@@ -316,7 +310,7 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
             pokemon.texto = flavorTextEn(datos).replaceAll("\\n", " ").replaceAll('"', "").replaceAll("\\f", " ");
             info.innerHTML += " Species: " + pokemon.especie + "<br>";
             info.innerHTML += " Habitat: " + pokemon.habitat;
-            descripcion.innerHTML += " <h3>Description:</h3>" + pokemon.texto;
+            descripcion.innerHTML += " <span class='tituloDerecha'>Description:</span><br>" + pokemon.texto;
         }).catch((error2) => {
             console.error("Error en la consulta: " + error2);
         })
@@ -482,7 +476,7 @@ function obtenerMovimientos(pokemonId) {
         .then((data) => {
          
             let moves = data.moves;
-            let movimientosHTML = "<h3>Movements:</h3>";
+            let movimientosHTML = "<span class='tituloDerecha'>Movements:</span><br>";
             moves.forEach((move) => {
                 movimientosHTML += "<div>" + move.move.name + "</div>";
             });
@@ -515,7 +509,7 @@ function obtenerHabilidades(pokemonId) {
         .then((data) => {
             // Obtener las habilidades
             let abilities = data.abilities;
-            let habilidadesHTML = "<h3>Abilities:</h3>";
+            let habilidadesHTML = "<span class='tituloDerecha'>Abilities:</span><br>";
             abilities.forEach((ability) => {
                 habilidadesHTML += "<div>" + ability.ability.name + "</div>";
             });

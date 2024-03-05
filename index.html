@@ -33,29 +33,26 @@
                 <div id="numeroYNombreCerrada"></div>
             </div>
             <div id="contenido" class="pokedex">
+                <div id="cabecera">
+                    S<input type="checkbox" id="shiny">
+                    F<input type="checkbox" id="female">
+                    <input type="button" id="botonDesc" value="Description"></input>
+                    <input type="button" id="botonMov" value="Movements"></input>
+                    <input type="button" id="botonHAb" value="Abilities"></input>
+                </div>
                 <div id="contenedorAbiertoImg" style="display: flex;">
-                    <img id="imgAbierta">
+                    <div id="divImgAb"><img id="imgAbierta"></div>
                     <div id="info"></div>
                 </div>
                 <div id="contenedorAbierto">
                     <div id="descripcion"></div>
-                    <input type="button" id="botonDesc" value="Description"></input>
-                    <input type="button" id="botonMov" value="Movements"></input>
-                    <input type="button" id="botonHAb" value="Abilities"></input>
-                    S<input type="checkbox" id="shiny">
-                    F<input type="checkbox" id="female">
                 </div>
             </div>
             <img src="./images/PokedexInferior.png" id="pokeabajo" class="pokedex">
         </div>
         <button id="avanzar"> Avanza </button>
     </div>
-    <div id="movimientos">
-        <ul id="ul_movimientos" class="lista"></ul>
-    </div>
-    <div id="habilidades">
-        <ul id="ul_habilidades" class="lista"></ul>
-    </div>
+   
     <script src="./script/main.js"></script>
 </body>
 
