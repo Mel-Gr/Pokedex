@@ -12,7 +12,9 @@ const contenido = document.getElementById("contenido");
 const imgAbierta = document.getElementById("imgAbierta");
 const info = document.getElementById("info");
 const descripcion = document.getElementById("descripcion");
-const movimientos = document.getElementById("movimientos");
+
+const movimientosDiv = document.getElementById("movimientos");
+
 const habilidades = document.getElementById("habilidades");
 const checkboxShiny = document.getElementById("shiny");
 const checkboxFemale = document.getElementById("female");
@@ -391,10 +393,6 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
     });
 }
 
-movimientos.addEventListener("click", () => {
-    movimientos.innerHTML = "";
-
-})
 
 imgCerrada.addEventListener("click", () => {
     obtenerPokemonPokedexAbierta(pokemon.numPokemon);
@@ -501,4 +499,88 @@ retroceder.addEventListener("click", () => {
 
 
 
+function obtenerMovimientos(pokemonId) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
+    fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            movimientos.innerHTML = "";
+
+            data.moves.forEach((move) => {
+                const li = document.createElement("li");
+                li.textContent = move.move.name;
+                movimientos.appendChild(li);
+            });
+        })
+        .catch((error) => {
+            console.error("Error al obtener los movimientos:", error);
+        });
+}
+
+botonMov.addEventListener("click", () => {
+  /*  // Ocultar el div de descripción
+    descripcion.style.display = "none";
+
+    // Mostrar el div de movimientos
+    movimientos.style.display = "block";
+*/
+    
+    obtenerMovimientos(pokemon.numPokemon);
+});
+
+function obtenerMovimientos(pokemonId) {
+    let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+    fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+         
+            let moves = data.moves;
+            let movimientosHTML = "<h3>Movimientos:</h3>";
+            moves.forEach((move) => {
+                movimientosHTML += "<div>" + move.move.name + "</div>";
+            });
+
+            descripcion.innerHTML = movimientosHTML;
+        })
+        .catch((error) => {
+            console.error("Error en la consulta de movimientos: " + error);
+        });
+}
+//habilidades 
+
+botonHAb.addEventListener("click", () => {
+ /*   // Ocultar el div de descripción
+    descripcion.style.display = "none";
+
+    // Mostrar el div de habilidades
+    habilidades.style.display = "block";*/
+
+    obtenerHabilidades(pokemon.numPokemon);
+});
+
+
+function obtenerHabilidades(pokemonId) {
+    let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+    fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            // Obtener las habilidades
+            let abilities = data.abilities;
+            let habilidadesHTML = "<h3>Habilidades:</h3>";
+            abilities.forEach((ability) => {
+                habilidadesHTML += "<div>" + ability.ability.name + "</div>";
+            });
+            // Colocar el contenido en el lugar de la descripción
+            descripcion.innerHTML = habilidadesHTML;
+        })
+        .catch((error) => {
+            console.error("Error en la consulta de habilidades: " + error);
+        });
+}
 
