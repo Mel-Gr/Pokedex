@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'pokemon';
+  src: url('../PokemonClassic.ttf');
+  font-style: normal;
+  font-weight: lighter;
+}
+
+body{
+  font-family: 'pokemon';
+}
+
 #contenido, #pokedexCerrada{
   background-color: rgb(206, 249, 255);
   text-align: center;
