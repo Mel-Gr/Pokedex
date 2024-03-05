@@ -539,7 +539,7 @@ function obtenerMovimientos(pokemonId) {
         .then((data) => {
          
             let moves = data.moves;
-            let movimientosHTML = "<h3>Movimientos:</h3>";
+            let movimientosHTML = "<h3>Movements:</h3>";
             moves.forEach((move) => {
                 movimientosHTML += "<div>" + move.move.name + "</div>";
             });
@@ -572,7 +572,7 @@ function obtenerHabilidades(pokemonId) {
         .then((data) => {
             // Obtener las habilidades
             let abilities = data.abilities;
-            let habilidadesHTML = "<h3>Habilidades:</h3>";
+            let habilidadesHTML = "<h3>Abilities:</h3>";
             abilities.forEach((ability) => {
                 habilidadesHTML += "<div>" + ability.ability.name + "</div>";
             });
