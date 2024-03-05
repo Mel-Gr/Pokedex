@@ -11,7 +11,7 @@
   width: 450px;
 }
 #general{
-  margin-top: 10%;
+  margin-top: 5%;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -41,4 +41,9 @@
 #info{
   margin-top: 7%;
   text-align: left;
+}
+
+#descripcion{
+  max-height: 150px;
+  overflow-y: scroll;
 }
