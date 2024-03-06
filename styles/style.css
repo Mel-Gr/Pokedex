@@ -84,6 +84,7 @@ body{
   border-left: 3px solid  rgba(130, 191, 240, 0.699);
   border-right: 3px solid  rgba(130, 191, 240, 0.699);
   border-top: 3px solid  rgba(130, 191, 240, 0.699);
+  border-radius: 10px 10px 0px 0px;
   border-bottom: 0px;
   background-color:  rgb(206, 249, 255);
   margin-right: -8px;
