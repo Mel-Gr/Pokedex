@@ -43,6 +43,7 @@ body{
 #contenido{
   display: flex;
   flex-direction: column;
+  padding-bottom: 3%;
 }
 #imgAbierta{
   width: 160px;
