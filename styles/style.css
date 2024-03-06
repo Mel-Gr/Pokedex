@@ -91,66 +91,16 @@ body{
   margin-right: -8px;
 }
 
-  
-.gg-push-left {
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  transform: scale(var(--ggs,1));
-  width: 16px;
-  height: 2px;
-  background: currentColor;
- }
- 
- .gg-push-left::after,
- .gg-push-left::before {
-  content: "";
-  display: block;
-  box-sizing: border-box;
-  position: absolute;
-  width: 2px;
-  height: 12px;
-  border-left: 2px solid;
-  left: -5px;
-  top: -5px
- }
- 
- .gg-push-left::after {
-  width: 8px;
-  height: 8px;
-  border-bottom: 2px solid;
-  transform: rotate(45deg);
-  top: -3px;
-  left: 0
- } 
- .gg-push-right {
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  transform: scale(var(--ggs,1));
-  width: 16px;
-  height: 2px;
-  background: currentColor;
- }
- 
- .gg-push-right::after,
- .gg-push-right::before {
-  content: "";
-  display: block;
-  box-sizing: border-box;
-  position: absolute;
-  width: 2px;
-  height: 12px;
-  border-right: 2px solid;
-  right: -5px;
-  top: -5px
- }
- 
- .gg-push-right::after {
-  width: 8px;
-  height: 8px;
-  border-top: 2px solid;
-  transform: rotate(45deg);
-  top: -3px;
-  right: 0
- } 
+#botonBusc{
+  border: 0px;
+  background-color: transparent;
+}
+
+#imgBusc{
+  width: 14px;
+}
+#flechaIzda, #flechaDcha{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}

@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
+
 <body>
     <header> <!-- Esto tiene que estar "encima" de la imagen superior de la pokedex, en la parte del circulito-->
     </header>  
     <div id="general">    
-        <button id="retroceder" class="gg-push-left"></button>
+        <button id="retroceder"> <img src="images/LeftArrow.png" id="flechaIzda">  </button>
         <div>
             <div id="lupaYBotones">
                 <img src="./images/PokedexSuperior.png" id="pokearriba" class="pokedex">
@@ -20,7 +23,7 @@
                     <div style="text-align: center;">
                         <form id="fr">
                             <input type="text" id="inputBusc" size="10px">
-                            <button type="submit" id="botonBusc">Buscar</button>
+                            <button type="submit" id="botonBusc"> <img src="images/lupa1.png" id="imgBusc"> </button>
                         </form>  
                     </div>
                 </div>
@@ -47,9 +50,10 @@
             </div>
             <img src="./images/PokedexInferior.png" id="pokeabajo" class="pokedex">
         </div>
-        <button id="avanzar" class="gg-push-right"></button>
+        <button id="avanzar"> <img src="images/RightArrow.png" id="flechaDcha"> </button>
     </div>
    
     <script src="./script/main.js"></script>
 </body>
+
 </html>
