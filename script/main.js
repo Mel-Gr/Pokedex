@@ -27,10 +27,9 @@ const min_numPokemon = 1;
 
 let contadorPokemonId = min_numPokemon;
 
-contenido.style.display = "none";
-
-
 let abierta = false;
+
+let desc = "";
 
 let pokemon = {
     nombre: "",
@@ -51,6 +50,8 @@ let pokemon = {
     habitat: "",
     texto: ""
 };
+
+contenido.style.display = "none";
 
 function addImage(url_img, div) {
     let img = document.createElement("img");
@@ -249,8 +250,6 @@ function obtenerPokemonPokedexCerrada(pokemonId) {
         });
 }
 
-
-
 function obtenerPokemonPokedexAbierta(pokemonId) {
     let url = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
     pokedexCerrada.style.display = "none";
@@ -258,6 +257,9 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
     imgAbierta.style.display = "block";
     info.style.marginLeft = "0px";
     contenedorAbierto.style.display = "block";
+    botonHAb.style.borderBottom = "3px solid  rgba(130, 191, 240, 0.699)";
+    botonMov.style.borderBottom = "3px solid  rgba(130, 191, 240, 0.699)";
+    botonDesc.style.borderBottom = "0px"; 
 
     abierta = true;
 
@@ -311,6 +313,7 @@ function obtenerPokemonPokedexAbierta(pokemonId) {
             info.innerHTML += " Species: " + pokemon.especie + "<br>";
             info.innerHTML += " Habitat: " + pokemon.habitat;
             descripcion.innerHTML += " <span class='tituloDerecha'>Description:</span><br>" + pokemon.texto;
+            desc = descripcion.innerHTML;
         }).catch((error2) => {
             console.error("Error en la consulta: " + error2);
         })
@@ -400,9 +403,6 @@ botonBusc.addEventListener("click", () => {
 
 });
 
-
-
-
 avanzar.addEventListener("click", () => {
     contadorPokemonId = pokemon.numPokemon;
     contadorPokemonId++;
@@ -435,7 +435,6 @@ retroceder.addEventListener("click", () => {
 });
 
 
-
 function obtenerMovimientos(pokemonId) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
     fetch(url)
@@ -456,15 +455,11 @@ function obtenerMovimientos(pokemonId) {
         });
 }
 
-botonMov.addEventListener("click", () => {
-  /*  // Ocultar el div de descripción
-    descripcion.style.display = "none";
-
-    // Mostrar el div de movimientos
-    movimientos.style.display = "block";
-*/
-    
+botonMov.addEventListener("click", () => {    
     obtenerMovimientos(pokemon.numPokemon);
+    botonHAb.style.borderBottom = "3px solid  rgba(130, 191, 240, 0.699)";
+    botonDesc.style.borderBottom = "3px solid  rgba(130, 191, 240, 0.699)";
+    botonMov.style.borderBottom = "0px";    
 });
 
 function obtenerMovimientos(pokemonId) {
@@ -480,23 +475,19 @@ function obtenerMovimientos(pokemonId) {
             moves.forEach((move) => {
                 movimientosHTML += "<div>" + move.move.name + "</div>";
             });
-
             descripcion.innerHTML = movimientosHTML;
         })
         .catch((error) => {
             console.error("Error en la consulta de movimientos: " + error);
         });
 }
-//habilidades 
+
 
 botonHAb.addEventListener("click", () => {
- /*   // Ocultar el div de descripción
-    descripcion.style.display = "none";
-
-    // Mostrar el div de habilidades
-    habilidades.style.display = "block";*/
-
     obtenerHabilidades(pokemon.numPokemon);
+    botonDesc.style.borderBottom = "3px solid  rgba(130, 191, 240, 0.699)";
+    botonMov.style.borderBottom = "3px solid  rgba(130, 191, 240, 0.699)";
+    botonHAb.style.borderBottom = "0px";    
 });
 
 
@@ -513,11 +504,17 @@ function obtenerHabilidades(pokemonId) {
             abilities.forEach((ability) => {
                 habilidadesHTML += "<div>" + ability.ability.name + "</div>";
             });
-            // Colocar el contenido en el lugar de la descripción
             descripcion.innerHTML = habilidadesHTML;
         })
         .catch((error) => {
             console.error("Error en la consulta de habilidades: " + error);
         });
 }
+
+botonDesc.addEventListener("click", () => {
+    descripcion.innerHTML = desc;
+    botonHAb.style.borderBottom = "3px solid  rgba(130, 191, 240, 0.699)";
+    botonMov.style.borderBottom = "3px solid  rgba(130, 191, 240, 0.699)";
+    botonDesc.style.borderBottom = "0px";    
+});
 
